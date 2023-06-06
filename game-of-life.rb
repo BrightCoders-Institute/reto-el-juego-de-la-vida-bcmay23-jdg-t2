@@ -1,7 +1,6 @@
+require 'matrix'
 def matrix
-    rows= 3
-    columns= 3
-    m = Matrix.build(2, 4)
+    m = Matrix.build(4,8) { 0 }
     print m       
  end
 matrix
