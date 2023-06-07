@@ -1,5 +1,5 @@
-@matriz = [[1, 2, 3, 4, 5],
-           [6, 7, 8, 9, 10],
+@matriz = [[ 1,  2,  3,  4,  5],
+           [ 6,  7,  8,  9, 10],
            [11, 12, 13, 14, 15],
            [16, 17, 18, 19, 20],
            [21, 22, 23, 24, 25]]
@@ -23,7 +23,7 @@ def position1()
 
   when [0, @columna - 1] # Esquina superior derecha
     puts "Posicion actual: #{actual}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
     puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
     puts "Abajo: #{@matriz[fila + 1][columna]}"
 
@@ -33,26 +33,26 @@ def position1()
     puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
     puts "Derecha: #{@matriz[fila][columna + 1]}"
 
-  when [fila, columna - 1] # Esquina inferior derecha
+  when [@fila2, @columna - 1] # Esquina inferior derecha
     puts "Posicion actual: #{actual}"
     puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
 
   when [0, columna] # Fila 0, medio de la columna
     puts "Posicion actual: #{actual}"
     puts "Abajo: #{@matriz[fila + 1][columna]}"
     puts "Derecha: #{@matriz[fila][columna + 1]}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
     puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
     puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
-  when [fila, columna] # Fila máxima, medio de la columna
+  when [@fila2, columna] # Fila máxima, medio de la columna
     puts "Posicion actual: #{actual}"
     puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     puts "Arriba: #{@matriz[fila - 1][columna]}"
     puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
     puts "Derecha: #{@matriz[fila][columna + 1]}"
 
   when [fila, 0] # Cualquier posición dentro de la fila, en la esquina izquierda
@@ -67,7 +67,7 @@ def position1()
     puts "Posicion actual: #{actual}"
     puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
     puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
     puts "Abajo: #{@matriz[fila + 1][columna]}"
 
@@ -80,7 +80,7 @@ def position1()
     puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
     puts "Abajo: #{@matriz[fila + 1][columna]}"
     puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
-    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila][columna - 1]}"
   end
 end
 
