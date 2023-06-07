@@ -8,57 +8,74 @@ require 'matrix'
 @fila = @matriz.length
 @fila2= @fila - 1
 def matrix
-    for row in @matriz do
-    #row
-        for col in row  do
-        
-        end
-    end
+    col= @matriz[2]
+    position1(col)
+    
 end
 
-def position1
+def position1(col)
+    fila = 1
+    columna =2 
     
-    for value in @matriz do
-        for val in value do
-            p val
-        end    
-    end
+    actual = @matriz[fila][columna]
+    derecha = @matriz[fila][columna+1]
+    diagonalabjizq = @matriz[fila+1][columna-1]
+    diagonalabjder = @matriz[fila+1][columna+1]
+    izquierda = @matriz[fila][columna-1]
+    abajo = @matriz[fila+1][columna]
+    arriba = @matriz [fila - 1][columna]
+    diagonalarbizq = @matriz[fila-1][columna-1]
+    diagonalarbder = @matriz [fila-1][columna+1]
+
+    case [fila, columna]
+when [0,0] #Esquina superior izquierda
+    p  "Derecha: #{derecha}"
+    p  "Abajo #{abajo}"
+    p  "Diagonal abajo derecha #{diagonalabjder}"
     
+when [0,  ] #Fila 0, medio de la columna
+    p  "Abajo #{abajo}"
+    p  "Derecha: #{derecha}"
+    p  "Izquierda #{izquierda}"
+    p  "Diagonal abajo izquierda #{diagonalabjizq}"
+    p  "Diagonal abajo derecha #{diagonalabjder}"
+
+when [0, @matriz[].length] #Esquina superior derecha  
+    p  "Izquierda #{izquierda}"
+    p  "Diagonal abajo izquierda #{diagonalabjizq}"
+    p  "Abajo #{abajo}"
+    
+when [matriz.length, matriz[].length] #Esquina inferior derecha
+
+
+when [matriz.length, 0] #Esquina inferior izquierda
+
+when []
+    else
+end
+       
+
+    @matriz[2].each {|x| 
+    if col[1]>x
+        break
+    else 
+     end
+}
+
 end
 matrix
-position1
-# Supongamos que tienes una matriz llamada 'matriz' que representa el tablero del juego de la vida
-def method_name
-    matrix = [[1, 2, 3], 
-              [4, 5, 6], 
-              [7, 8, 9]]
 
-    
-filas = matrix.length
-columnas = matrix[0].length
-
-for fila in 0...filas
-for columna in 0...columnas
-# Obtener el valor de la célula en la posición actual
-valor = matrix[fila][columna]
-
-# Realizar las operaciones que necesites con la posición actual
-# Puedes aumentar la posición, hacer algún cálculo, etc.
-
-# Ejemplo: aumentar la posición en 1 en ambas direcciones
-nueva_fila = fila + 1
-nueva_columna = columna + 1
-
-# Utilizar la nueva posición para realizar las operaciones deseadas
-# ...
-p nueva_fila
-
-end
-end
-end
-
-
-
+=begin
+    p  "Arriba #{arriba}"
+    p  "Abajo #{abajo}"
+    p  "Posición actual: #{actual}"
+    p  "Derecha: #{derecha}"
+    p  "Izquierda #{izquierda}"
+    p  "Diagonal abajo izquierda #{diagonalabjizq}"
+    p  "Diagonal abajo derecha #{diagonalabjder}"
+    p  "Diagonal arroba izquierda #{diagonalarbizq}"
+    p  "Diagonal arriba derecha #{diagonalarbder}"
+=end 
 
 =begin
 
