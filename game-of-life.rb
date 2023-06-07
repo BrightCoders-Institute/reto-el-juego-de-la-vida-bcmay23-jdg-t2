@@ -14,82 +14,73 @@ def position1()
   p "Ingrese numero de columa"
   columna = gets.chop.to_i
   actual = @matriz[fila][columna]
-  derecha = @matriz[fila][columna + 1]
-  diagonal_abj_izq = @matriz[fila + 1][columna - 1]
-  diagonal_abj_der = @matriz[fila + 1][columna + 1]
-  izquierda = @matriz[fila][columna - 1]
-  abajo = @matriz[fila + 1][columna]
-  arriba = @matriz[fila - 1][columna]
-  diagonal_arb_izq = @matriz[fila - 1][columna - 1]
-  diagonal_arb_der = @matriz[fila - 1][columna + 1]
-
   case [fila, columna]
   when [0, 0] # Esquina superior izquierda
     puts "Posicion actual: #{actual}"
-    puts "Derecha: #{derecha}"
-    puts "Abajo: #{abajo}"
-    puts "Diagonal abajo derecha: #{diagonal_abj_der}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
   when [0, @columna - 1] # Esquina superior derecha
     puts "Posicion actual: #{actual}"
-    puts "Izquierda: #{izquierda}"
-    puts "Diagonal abajo izquierda: #{diagonal_abj_izq}"
-    puts "Abajo: #{abajo}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
 
-  when [@fila2, 0] # Esquina inferior izquierda
+  when [4, 0] # Esquina inferior izquierda
     puts "Posicion actual: #{actual}"
-    puts "Arriba: #{arriba}"
-    puts "Diagonal arriba derecha: #{diagonal_arb_der}"
-    puts "Derecha: #{derecha}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
 
-  when [@fila2, @columna - 1] # Esquina inferior derecha
+  when [fila, columna - 1] # Esquina inferior derecha
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{diagonal_arb_izq}"
-    puts "Arriba: #{arriba}"
-    puts "Izquierda: #{izquierda}"
+    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
 
   when [0, columna] # Fila 0, medio de la columna
     puts "Posicion actual: #{actual}"
-    puts "Abajo: #{abajo}"
-    puts "Derecha: #{derecha}"
-    puts "Izquierda: #{izquierda}"
-    puts "Diagonal abajo izquierda: #{diagonal_abj_izq}"
-    puts "Diagonal abajo derecha: #{diagonal_abj_der}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
-  when [@fila2, columna] # Fila máxima, medio de la columna
+  when [fila, columna] # Fila máxima, medio de la columna
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{diagonal_arb_izq}"
-    puts "Arriba: #{arriba}"
-    puts "Diagonal arriba derecha: #{diagonal_arb_der}"
-    puts "Izquierda: #{izquierda}"
-    puts "Derecha: #{derecha}"
+    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
 
   when [fila, 0] # Cualquier posición dentro de la fila, en la esquina izquierda
     puts "Posicion actual: #{actual}"
-    puts "Arriba: #{arriba}"
-    puts "Diagonal arriba derecha: #{diagonal_arb_der}"
-    puts "Derecha: #{derecha}"
-    puts "Abajo: #{abajo}"
-    puts "Diagonal abajo derecha: #{diagonal_abj_der}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
   when [fila, @columna - 1] # Cualquier posición dentro de la fila, en la esquina derecha
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{diagonal_arb_izq}"
-    puts "Arriba: #{arriba}"
-    puts "Izquierda: #{izquierda}"
-    puts "Diagonal abajo izquierda: #{diagonal_abj_izq}"
-    puts "Abajo: #{abajo}"
+    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
+    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
 
   else # Cualquier posición central
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{diagonal_arb_izq}"
-    puts "Arriba: #{arriba}"
-    puts "Diagonal arriba derecha: #{diagonal_arb_der}"
-    puts "Derecha: #{derecha}"
-    puts "Diagonal abajo derecha: #{diagonal_abj_der}"
-    puts "Abajo: #{abajo}"
-    puts "Diagonal abajo izquierda: #{diagonal_abj_izq}"
-    puts "Izquierda: #{izquierda}"
+    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    puts "Arriba: #{@matriz[fila - 1][columna]}"
+    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
+    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    puts "Izquierda: #{@matriz[fila + 1][columna + 1]}"
   end
 end
 
