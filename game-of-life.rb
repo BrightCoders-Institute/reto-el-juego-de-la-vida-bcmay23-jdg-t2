@@ -20,7 +20,7 @@ def vecindario(x, y)
     derecha(fila,columna)
     abajo(fila,columna)
     diagonal_abajo_derecha(fila,columna)
-    estado(actual)
+    estado(fila, columna, actual)
 
   when [0, @columna - 1] # Esquina superior derecha
     @cont = 0
@@ -28,7 +28,7 @@ def vecindario(x, y)
     izquierda(fila, columna)
     diagonal_abajo_izquierda(fila, columna)
     abajo(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Izquierda: #{@matriz[fila][columna - 1]}"
     #puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
     #puts "Abajo: #{@matriz[fila + 1][columna]}"
@@ -39,7 +39,7 @@ def vecindario(x, y)
     arriba(fila, columna)
     diagonal_arriba_derecha(fila, columna)
     derecha(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
     #puts "Derecha: #{@matriz[fila][columna + 1]}"
@@ -50,7 +50,7 @@ def vecindario(x, y)
     diagonal_arriba_izquierda(fila, columna)
     arriba(fila, columna)
     izquierda(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Izquierda: #{@matriz[fila][columna - 1]}"
@@ -63,7 +63,7 @@ def vecindario(x, y)
     izquierda(fila, coluumna)
     diagonal_abajo_izquierda(fila, columna)
     diagonal_abajo_derecha(fila, coluumna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Abajo: #{@matriz[fila + 1][columna]}"
     #puts "Derecha: #{@matriz[fila][columna + 1]}"
     #puts "Izquierda: #{@matriz[fila][columna - 1]}"
@@ -78,7 +78,7 @@ def vecindario(x, y)
     diagonal_arriba_derecha(fila, columna)
     izquierda(fila, columna)
     derecha(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
@@ -93,7 +93,7 @@ def vecindario(x, y)
     derecha(fila, columna)
     abajo(fila, columna)
     diagonal_abajo_derecha(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
     #puts "Derecha: #{@matriz[fila][columna + 1]}"
@@ -108,7 +108,7 @@ def vecindario(x, y)
     izquierda(fila, columna)
     diagonal_abajo_izquierda(fila, columna)
     abajo(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Izquierda: #{@matriz[fila][columna - 1]}"
@@ -126,7 +126,7 @@ def vecindario(x, y)
     abajo(fila, columna)
     diagonal_abajo_izquierda(fila, columna)
     izquierda(fila, columna)
-    estado(actual)
+    estado(fila, columna, actual)
     #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
     #puts "Arriba: #{@matriz[fila - 1][columna]}"
     #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
@@ -137,10 +137,9 @@ def vecindario(x, y)
     #puts "Izquierda: #{@matriz[fila][columna - 1]}"
   end
 
-  p "valor nuevo: #{actual}"
 end
 
-def estado(actual)
+def estado(fila, columna, actual)
   if actual == 1
     if @cont == 3
     else
@@ -152,7 +151,18 @@ def estado(actual)
     else
     end
   end
+  @matriz[fila][columna] = actual 
+
+  @matriz.each do |fila|
+    fila.each do |elemento|
+      print "#{elemento}\t" # \t para separar los elementos por una tabulación
+    end
+    puts "\n" # Salto de línea después de cada fila
+  end
 end
+
+
+
 
 def arriba(fila, columna)
   @cont += 1 if @matriz[fila - 1][columna] == 1
