@@ -1,8 +1,8 @@
-@matriz = [[ 1,  2,  3,  4,  5],
-           [ 6,  7,  8,  9, 10],
-           [11, 12, 13, 14, 15],
-           [16, 17, 18, 19, 20],
-           [21, 22, 23, 24, 25]]
+@matriz = [[ 0,  1,  0,  0,  0],
+           [ 1,  1,  0,  0,  0],
+           [ 0,  0,  0,  0,  0],
+           [ 0,  0,  0,  0,  0],
+           [ 0,  0,  0,  0,  0]]
 
 @columna = @matriz[0].length
 @fila = @matriz.length
@@ -14,12 +14,14 @@ def position1()
   p "Ingrese numero de columa"
   columna = gets.chop.to_i
   actual = @matriz[fila][columna]
+  cont = 0
   case [fila, columna]
   when [0, 0] # Esquina superior izquierda
     puts "Posicion actual: #{actual}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
-    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
+    cont += 1 if @matriz[fila][columna + 1] == 1 # Derecha
+    cont += 1 if @matriz[fila + 1][columna] == 1 # Abajo
+    cont += 1 if @matriz[fila + 1][columna + 1] == 1 # Diagonal abajo derecha
+    @cont
 
   when [0, @columna - 1] # Esquina superior derecha
     puts "Posicion actual: #{actual}"
@@ -27,7 +29,7 @@ def position1()
     puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
     puts "Abajo: #{@matriz[fila + 1][columna]}"
 
-  when [4, 0] # Esquina inferior izquierda
+  when [@fila2, 0] # Esquina inferior izquierda
     puts "Posicion actual: #{actual}"
     puts "Arriba: #{@matriz[fila - 1][columna]}"
     puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
@@ -83,6 +85,7 @@ def position1()
     puts "Izquierda: #{@matriz[fila][columna - 1]}"
   end
 end
+
 
 position1()
 
