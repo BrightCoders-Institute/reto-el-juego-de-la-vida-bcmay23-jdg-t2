@@ -1,13 +1,21 @@
-@matriz = [[ 0,  1,  0,  0,  0],
-           [ 1,  1,  0,  0,  0],
-           [ 0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0],
-           [ 0,  0,  0,  0,  0]]
+require 'matrix'
+p "Favor de ingresar número de filas: "
+row = gets.chop.to_i
+p "Ingrese el tamaño de la columna: "
+col = gets.chop.to_i
+@matriz = Array.new(row) { Array.new(col) { rand(0..1) } }
 
-@columna = @matriz[0].length
-@fila = @matriz.length
-@fila2 = @fila - 1
-@cont = 0
+
+def recorrido
+  imprimir
+  for x in 0...@fila 
+  for y in 0...@columna do
+    vecindario(x,y)
+  end
+  end
+  p ""
+  imprimir 
+end
 
 def vecindario(x, y)
   fila = x
@@ -16,7 +24,6 @@ def vecindario(x, y)
   case [fila, columna]
   when [0, 0] # Esquina superior izquierda
     @cont = 0
-    puts "Posicion actual: #{actual}"
     derecha(fila,columna)
     abajo(fila,columna)
     diagonal_abajo_derecha(fila,columna)
@@ -24,7 +31,6 @@ def vecindario(x, y)
 
   when [0, @columna - 1] # Esquina superior derecha
     @cont = 0
-    puts "Posicion actual: #{actual}"
     izquierda(fila, columna)
     diagonal_abajo_izquierda(fila, columna)
     abajo(fila, columna)
@@ -35,7 +41,6 @@ def vecindario(x, y)
 
   when [@fila2, 0] # Esquina inferior izquierda
     @cont = 0
-    puts "Posicion actual: #{actual}"
     arriba(fila, columna)
     diagonal_arriba_derecha(fila, columna)
     derecha(fila, columna)
@@ -46,7 +51,6 @@ def vecindario(x, y)
 
   when [@fila2, @columna - 1] # Esquina inferior derecha
     @cont = 0
-    puts "Posicion actual: #{actual}"
     diagonal_arriba_izquierda(fila, columna)
     arriba(fila, columna)
     izquierda(fila, columna)
@@ -57,12 +61,11 @@ def vecindario(x, y)
 
   when [0, columna] # Fila 0, medio de la columna
     @cont = 0
-    puts "Posicion actual: #{actual}"
     abajo(fila, columna)
     derecha(fila, columna)
-    izquierda(fila, coluumna)
+    izquierda(fila, columna)
     diagonal_abajo_izquierda(fila, columna)
-    diagonal_abajo_derecha(fila, coluumna)
+    diagonal_abajo_derecha(fila, columna)
     estado(fila, columna, actual)
     #puts "Abajo: #{@matriz[fila + 1][columna]}"
     #puts "Derecha: #{@matriz[fila][columna + 1]}"
@@ -72,7 +75,6 @@ def vecindario(x, y)
 
   when [@fila2, columna] # Fila máxima, medio de la columna
     @cont = 0
-    puts "Posicion actual: #{actual}"
     diagonal_arriba_izquierda(fila, columna)
     arriba(fila, columna)
     diagonal_arriba_derecha(fila, columna)
@@ -87,8 +89,7 @@ def vecindario(x, y)
 
   when [fila, 0] # Cualquier posición dentro de la fila, en la esquina izquierda
     @cont = 0
-    puts "Posicion actual: #{actual}"
-    arriba(fila, coluumna)
+    arriba(fila, columna)
     diagonal_arriba_derecha(fila, columna)
     derecha(fila, columna)
     abajo(fila, columna)
@@ -102,7 +103,6 @@ def vecindario(x, y)
 
   when [fila, @columna - 1] # Cualquier posición dentro de la fila, en la esquina derecha
     @cont = 0
-    puts "Posicion actual: #{actual}"
     diagonal_arriba_izquierda(fila, columna)
     arriba(fila, columna)
     izquierda(fila, columna)
@@ -117,7 +117,6 @@ def vecindario(x, y)
 
   else # Cualquier posición central
     @cont = 0
-    puts "Posicion actual: #{actual}"
     diagonal_arriba_izquierda(fila, columna)
     arriba(fila, columna)
     diagonal_arriba_derecha(fila, columna)
@@ -152,16 +151,16 @@ def estado(fila, columna, actual)
     end
   end
   @matriz[fila][columna] = actual 
+end
 
+def imprimir 
   @matriz.each do |fila|
     fila.each do |elemento|
       print "#{elemento}\t" # \t para separar los elementos por una tabulación
     end
     puts "\n" # Salto de línea después de cada fila
-  end
+  end  
 end
-
-
 
 
 def arriba(fila, columna)
@@ -197,8 +196,11 @@ def diagonal_abajo_derecha(fila,columna)
 end
 
 
-
-vecindario(0,0)
+@columna = @matriz[0].length
+@fila = @matriz.length
+@fila2 = @fila - 1
+@cont = 0
+recorrido()
 
 
 
@@ -217,7 +219,7 @@ vecindario(0,0)
 =begin
 
 def matrix
-    m = Matrix.build(4,8) { rand(-..*) }
+    m = 
     print m
 end 
 =end
