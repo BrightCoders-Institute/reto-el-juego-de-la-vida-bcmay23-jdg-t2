@@ -7,6 +7,7 @@
 @columna = @matriz[0].length
 @fila = @matriz.length
 @fila2 = @fila - 1
+@cont = 0
 
 def position1()
   p "Ingrese numero de fila"
@@ -14,14 +15,13 @@ def position1()
   p "Ingrese numero de columa"
   columna = gets.chop.to_i
   actual = @matriz[fila][columna]
-  cont = 0
   case [fila, columna]
   when [0, 0] # Esquina superior izquierda
     puts "Posicion actual: #{actual}"
-    cont += 1 if @matriz[fila][columna + 1] == 1 # Derecha
-    cont += 1 if @matriz[fila + 1][columna] == 1 # Abajo
-    cont += 1 if @matriz[fila + 1][columna + 1] == 1 # Diagonal abajo derecha
-    @cont
+    derecha(fila,columna)
+    abajo(fila,columna)
+    daderecha(fila,columna)
+    impresion(actual)
 
   when [0, @columna - 1] # Esquina superior derecha
     puts "Posicion actual: #{actual}"
@@ -85,6 +85,36 @@ def position1()
     puts "Izquierda: #{@matriz[fila][columna - 1]}"
   end
 end
+
+def impresion(actual)
+  if actual == 1
+    if @cont == 3
+      p "Sigues con vida"
+    else
+      p "Vas a morir"
+    end
+  else actual == 0
+    if @cont == 3
+      p "Felicidades revives"
+    else
+      p "Sigues muerto"
+    end
+  end
+end
+
+
+def derecha(fila,columna)
+  @cont += 1 if @matriz[fila][columna + 1] == 1
+end
+
+def abajo(fila,columna)
+  @cont += 1 if @matriz[fila + 1][columna] == 1
+end
+
+def daderecha(fila,columna)
+  @cont += 1 if @matriz[fila + 1][columna + 1] == 1
+end
+
 
 
 position1()
