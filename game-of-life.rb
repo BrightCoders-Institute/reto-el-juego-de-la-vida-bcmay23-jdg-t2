@@ -9,115 +9,186 @@
 @fila2 = @fila - 1
 @cont = 0
 
-def position1()
-  p "Ingrese numero de fila"
-  fila = gets.chop.to_i
-  p "Ingrese numero de columa"
-  columna = gets.chop.to_i
+def vecindario(x, y)
+  fila = x
+  columna = y
   actual = @matriz[fila][columna]
   case [fila, columna]
   when [0, 0] # Esquina superior izquierda
+    @cont = 0
     puts "Posicion actual: #{actual}"
     derecha(fila,columna)
     abajo(fila,columna)
-    daderecha(fila,columna)
-    impresion(actual)
+    diagonal_abajo_derecha(fila,columna)
+    estado(actual)
 
   when [0, @columna - 1] # Esquina superior derecha
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
-    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    izquierda(fila, columna)
+    diagonal_abajo_izquierda(fila, columna)
+    abajo(fila, columna)
+    estado(actual)
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    #puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    #puts "Abajo: #{@matriz[fila + 1][columna]}"
 
   when [@fila2, 0] # Esquina inferior izquierda
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    arriba(fila, columna)
+    diagonal_arriba_derecha(fila, columna)
+    derecha(fila, columna)
+    estado(actual)
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    #puts "Derecha: #{@matriz[fila][columna + 1]}"
 
   when [@fila2, @columna - 1] # Esquina inferior derecha
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    diagonal_arriba_izquierda(fila, columna)
+    arriba(fila, columna)
+    izquierda(fila, columna)
+    estado(actual)
+    #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
 
   when [0, columna] # Fila 0, medio de la columna
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
-    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
-    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
+    abajo(fila, columna)
+    derecha(fila, columna)
+    izquierda(fila, coluumna)
+    diagonal_abajo_izquierda(fila, columna)
+    diagonal_abajo_derecha(fila, coluumna)
+    estado(actual)
+    #puts "Abajo: #{@matriz[fila + 1][columna]}"
+    #puts "Derecha: #{@matriz[fila][columna + 1]}"
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    #puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    #puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
   when [@fila2, columna] # Fila máxima, medio de la columna
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
+    diagonal_arriba_izquierda(fila, columna)
+    arriba(fila, columna)
+    diagonal_arriba_derecha(fila, columna)
+    izquierda(fila, columna)
+    derecha(fila, columna)
+    estado(actual)
+    #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    #puts "Derecha: #{@matriz[fila][columna + 1]}"
 
   when [fila, 0] # Cualquier posición dentro de la fila, en la esquina izquierda
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
-    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
+    arriba(fila, coluumna)
+    diagonal_arriba_derecha(fila, columna)
+    derecha(fila, columna)
+    abajo(fila, columna)
+    diagonal_abajo_derecha(fila, columna)
+    estado(actual)
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    #puts "Derecha: #{@matriz[fila][columna + 1]}"
+    #puts "Abajo: #{@matriz[fila + 1][columna]}"
+    #puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
 
   when [fila, @columna - 1] # Cualquier posición dentro de la fila, en la esquina derecha
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
-    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
+    diagonal_arriba_izquierda(fila, columna)
+    arriba(fila, columna)
+    izquierda(fila, columna)
+    diagonal_abajo_izquierda(fila, columna)
+    abajo(fila, columna)
+    estado(actual)
+    #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    #puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    #puts "Abajo: #{@matriz[fila + 1][columna]}"
 
   else # Cualquier posición central
+    @cont = 0
     puts "Posicion actual: #{actual}"
-    puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
-    puts "Arriba: #{@matriz[fila - 1][columna]}"
-    puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
-    puts "Derecha: #{@matriz[fila][columna + 1]}"
-    puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
-    puts "Abajo: #{@matriz[fila + 1][columna]}"
-    puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
-    puts "Izquierda: #{@matriz[fila][columna - 1]}"
+    diagonal_arriba_izquierda(fila, columna)
+    arriba(fila, columna)
+    diagonal_arriba_derecha(fila, columna)
+    derecha(fila, columna)
+    diagonal_abajo_derecha(fila, columna)
+    abajo(fila, columna)
+    diagonal_abajo_izquierda(fila, columna)
+    izquierda(fila, columna)
+    estado(actual)
+    #puts "Diagonal arriba izquierda: #{@matriz[fila - 1][columna - 1]}"
+    #puts "Arriba: #{@matriz[fila - 1][columna]}"
+    #puts "Diagonal arriba derecha: #{@matriz[fila - 1][columna + 1]}"
+    #puts "Derecha: #{@matriz[fila][columna + 1]}"
+    #puts "Diagonal abajo derecha: #{@matriz[fila + 1][columna + 1]}"
+    #puts "Abajo: #{@matriz[fila + 1][columna]}"
+    #puts "Diagonal abajo izquierda: #{@matriz[fila + 1][columna - 1]}"
+    #puts "Izquierda: #{@matriz[fila][columna - 1]}"
   end
+
+  p "valor nuevo: #{actual}"
 end
 
-def impresion(actual)
+def estado(actual)
   if actual == 1
     if @cont == 3
-      p "Sigues con vida"
     else
-      p "Vas a morir"
+      actual = 0 
     end
-  else actual == 0
+  elsif actual == 0
     if @cont == 3
-      p "Felicidades revives"
+      actual = 1
     else
-      p "Sigues muerto"
     end
   end
 end
 
-
-def derecha(fila,columna)
-  @cont += 1 if @matriz[fila][columna + 1] == 1
+def arriba(fila, columna)
+  @cont += 1 if @matriz[fila - 1][columna] == 1
 end
 
 def abajo(fila,columna)
   @cont += 1 if @matriz[fila + 1][columna] == 1
 end
 
-def daderecha(fila,columna)
+def izquierda(fila, columna)
+  @cont += 1 if @matriz[fila - 1][columna] == 1
+end
+
+def derecha(fila,columna)
+  @cont += 1 if @matriz[fila][columna + 1] == 1
+end
+
+def diagonal_arriba_izquierda(fila, columna)
+  @cont += 1 if @matriz[fila - 1][columna - 1] == 1
+end
+
+def diagonal_arriba_derecha(fila, columna)
+  @cont += 1 if @matriz[fila - 1][columna + 1] == 1
+end
+
+def diagonal_abajo_izquierda(fila, columna)
+  @cont += 1 if @matriz[fila + 1][columna - 1] == 1
+end
+
+def diagonal_abajo_derecha(fila,columna)
   @cont += 1 if @matriz[fila + 1][columna + 1] == 1
 end
 
 
 
-position1()
+vecindario(0,0)
 
 
 
