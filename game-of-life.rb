@@ -4,7 +4,7 @@ row = gets.chop.to_i
 p "Ingrese el tamaño de la columna: "
 col = gets.chop.to_i
 @matriz = Array.new(row) { Array.new(col) { rand(0..1) } }
-
+@matriz2 = Array.new(row) {Array.new(col)}
 
 def recorrido
   imprimir
@@ -14,6 +14,7 @@ def recorrido
   end
   end
   p ""
+  transicionMatriz()
   imprimir 
 end
 
@@ -139,18 +140,16 @@ def vecindario(x, y)
 end
 
 def estado(fila, columna, actual)
-  if actual == 1
-    if @cont == 3
-    else
-      actual = 0 
+  if actual== 1 
+    if @cont != 3
+      actual = 0
     end
-  elsif actual == 0
+  elsif actual = 0
     if @cont == 3
       actual = 1
-    else
     end
-  end
-  @matriz[fila][columna] = actual 
+  end  
+  @matriz2[fila][columna] = actual 
 end
 
 def imprimir 
@@ -161,8 +160,9 @@ def imprimir
     puts "\n" # Salto de línea después de cada fila
   end  
 end
-
-
+def transicionMatriz
+  @matriz = @matriz2.map(&:clone)
+end
 def arriba(fila, columna)
   @cont += 1 if @matriz[fila - 1][columna] == 1
 end
@@ -172,7 +172,7 @@ def abajo(fila,columna)
 end
 
 def izquierda(fila, columna)
-  @cont += 1 if @matriz[fila - 1][columna] == 1
+  @cont += 1 if @matriz[fila][columna - 1] == 1
 end
 
 def derecha(fila,columna)
