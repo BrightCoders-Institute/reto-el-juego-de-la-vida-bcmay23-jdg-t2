@@ -19,12 +19,11 @@ class JuegoDeLaVida
 
   def inicializar
     @matriz = Matrix[
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 1, 0, 0, 0],
-        [0, 0, 0, 1, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
-      ]
-
+      [0, 1, 0],
+      [0, 1, 0],
+      [0, 1, 0]
+    ]
+  
     @matriz2= @matriz.clone
 
     @fila = @matriz.row_size
@@ -33,7 +32,7 @@ class JuegoDeLaVida
   end
 
   def iteraciones
-    n = 3
+    n = 2
 
     n.times do |i|
       puts "Iteración: #{i + 1}"
@@ -157,7 +156,7 @@ class JuegoDeLaVida
   end
 
   def transicionMatriz
-    @matriz = @matriz2.clone
+    @matriz = @matriz2.dup
   end
 
   def arriba(fila, columna)
