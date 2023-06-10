@@ -1,4 +1,8 @@
 source 'http://rubygems.org'
-gem 'rspec'
+
+group :development, :test do
+  gem 'rspec'
+end
+
 gem 'rubocop'
 gem 'matrix'
