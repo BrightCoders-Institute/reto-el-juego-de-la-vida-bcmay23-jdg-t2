@@ -18,9 +18,6 @@ class JuegoDeLaVida
   private
 
   def inicializar
-    filas = 4
-    columnas = 8
-
     @matriz = Matrix[
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 1, 0, 0, 0],
