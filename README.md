@@ -9,15 +9,15 @@
 > [Ver instrucciones antes de iniciar](./instructions.md)
 
 
-## Tabla de contenidos
-- Descripcion
+## Table of Contents
+- Description
 - How to Install and Run the Project.
 - How to Use the Project.
 - Credits
 - Badges
 
 
-## Descripcion. 
+## Description. 
 
 Este Desafío de Codificación se trata de calcular la siguiente generación del juego de la vida de Conway, dada cualquier posición inicial.
 
